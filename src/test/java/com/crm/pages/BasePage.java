@@ -1,8 +1,5 @@
 package com.crm.pages;
 
-
-
-
 import com.crm.utilities.BrowserUtils;
 import com.crm.utilities.Driver;
 import org.openqa.selenium.By;
@@ -19,12 +16,14 @@ import java.util.List;
 
 public abstract class BasePage {
 
+    public BasePage(){
+        PageFactory.initElements(Driver.getDriver(),this);
+    }
+
     public void navigateToModuleAndClick(String moduleName) {
         String locator = "//ul[@class='menu-items']//span[contains(.,'"+moduleName+"')]";
         WebElement module = Driver.getDriver().findElement(By.xpath(locator));
         module.click();
     }
-
-
 
 }
