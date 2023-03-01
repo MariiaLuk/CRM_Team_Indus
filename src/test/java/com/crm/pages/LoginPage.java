@@ -1,7 +1,7 @@
 package com.crm.pages;
 
 
-import com.crm.utilities.Driver;
+import com.fleet.utilities.Driver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
@@ -12,15 +12,15 @@ public class LoginPage {
         PageFactory.initElements(Driver.getDriver(), this);
     }
 
-    @FindBy(id="prependedInput")
+    @FindBy(name = "USER_LOGIN")
     public WebElement userName;
 
 
 
-    @FindBy(id="prependedInput2")
+    @FindBy(name = "USER_PASSWORD")
     public WebElement password;
 
-    @FindBy(name = "_submit")
+    @FindBy(css = "input[type=\"submit\"]")
     public WebElement submit;
 
 
