@@ -21,7 +21,7 @@ public abstract class BasePage {
     }
 
     public void navigateToModuleAndClick(String moduleName) {
-        String locator = "//ul[@class='menu-items']//span[contains(.,'"+moduleName+"')]";
+        String locator = "//ul[@id='left-menu-list']//span[contains(.,'"+moduleName+"')]";
         WebElement module = Driver.getDriver().findElement(By.xpath(locator));
         module.click();
     }
