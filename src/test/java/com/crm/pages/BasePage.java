@@ -19,6 +19,14 @@ import java.util.List;
 
 public abstract class BasePage {
 
+    public void navigateToModuleAndClick(String moduleName) {
+        String locator = "//ul[@class='menu-items']//span[contains(.,'"+moduleName+"')]";
+        WebElement module = Driver.getDriver().findElement(By.xpath(locator));
+        module.click();
+    }
+
+
+
     @FindBy(css = "span.title-level-1")
     public List<WebElement> menuOptions;
 
