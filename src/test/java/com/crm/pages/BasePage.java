@@ -19,16 +19,16 @@ import java.util.List;
 
 public abstract class BasePage {
 
-      @FindBy(xpath = "//li[@id='bx_left_menu_menu_live_feed']//a")
+      @FindBy(xpath = "(//span[@class='menu-item-link-text'])[1]")
        public WebElement activityStream;
 
-      @FindBy(xpath = "(//a[@href='/company/personal/user/693/tasks/'])[1]")
+      @FindBy(xpath = "(//span[@class='menu-item-link-text'])[2]")
       public WebElement tasks;
 
-      @FindBy(css = "a[title='Chat and Calls']")
+      @FindBy(xpath = "(//span[@class='menu-item-link-text'])[3]")
       public WebElement chatAndCall;
 
-      @FindBy(css = "a[title='Workgroups']")
+      @FindBy(xpath = "(//span[@class='menu-item-link-text'])[4]")
       public WebElement workGroups;
 
 
