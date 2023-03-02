@@ -61,6 +61,15 @@ public abstract class BasePage {
     @FindBy(xpath = "//span[.='Log out']")
     public WebElement logoutOption;
 
+    @FindBy (id = "bx-im-bar-notify")
+    public WebElement notifications;
+
+    @FindBy (xpath = "//div[@class='help-block-icon']")
+    public WebElement helpButton;
+
+    @FindBy (id = "bx-im-bar-search")
+    public WebElement rightSearchButton;
+
     /**
      * Method that will allow to access options under my profile
      * @param option
