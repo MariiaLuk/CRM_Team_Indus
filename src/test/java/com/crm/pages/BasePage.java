@@ -64,7 +64,7 @@ public abstract class BasePage {
     @FindBy (id = "bx-im-bar-notify")
     public WebElement notifications;
 
-    @FindBy (xpath = "//div[@class=\"help-block-icon\"]")
+    @FindBy (xpath = "//div[@class='help-block-icon']")
     public WebElement helpButton;
 
     @FindBy (id = "bx-im-bar-search")
