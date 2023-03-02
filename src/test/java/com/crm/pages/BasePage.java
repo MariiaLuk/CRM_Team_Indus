@@ -19,23 +19,18 @@ import java.util.List;
 
 public abstract class BasePage {
 
+      @FindBy(xpath = "//li[@id='bx_left_menu_menu_live_feed']//a")
+       public WebElement activityStream;
 
+      @FindBy(xpath = "(//a[@href='/company/personal/user/693/tasks/'])[1]")
+      public WebElement tasks;
 
-    @FindBy(css = "div[class='loader-mask shown']")
-    @CacheLookup
-    protected WebElement loaderMask;
+      @FindBy(css = "a[title='Chat and Calls']")
+      public WebElement chatAndCall;
 
-    @FindBy(css = "h1[class='oro-subtitle']")
-    public WebElement pageSubTitle;
+      @FindBy(css = "a[title='Workgroups']")
+      public WebElement workGroups;
 
-    @FindBy(css = "#user-menu > a")
-    public WebElement userName;
-
-    @FindBy(linkText = "Logout")
-    public WebElement logOutLink;
-
-    @FindBy(linkText = "My User")
-    public WebElement myUser;
 
     public BasePage() {
         PageFactory.initElements(Driver.getDriver(), this);
@@ -45,12 +40,7 @@ public abstract class BasePage {
     /**
      * @return page name, for example: Dashboard
      */
-    public String getPageSubTitle() {
-        //ant time we are verifying page name, or page subtitle, loader mask appears
-        waitUntilLoaderScreenDisappear();
-//        BrowserUtils.waitForStaleElement(pageSubTitle);
-        return pageSubTitle.getText();
-    }
+
 
 
     /**
@@ -58,15 +48,7 @@ public abstract class BasePage {
      * NoSuchElementException will be handled  bu try/catch block
      * Thus, we can continue in any case.
      */
-    public void waitUntilLoaderScreenDisappear() {
-        try {
-            WebDriverWait wait = new WebDriverWait(Driver.getDriver(), Duration.ofSeconds(10));
-            wait.until(ExpectedConditions.invisibilityOf(loaderMask));
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
 
-    }
 
 
 
