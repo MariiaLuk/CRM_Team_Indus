@@ -26,4 +26,16 @@ public abstract class BasePage {
         module.click();
     }
 
+    @FindBy(xpath = "//a[@title='Time and Reports']")
+    public WebElement timeAndReportsModule;
+
+    @FindBy(xpath = "//a[@title='Employees']")
+    public WebElement employeesModule;
+
+    @FindBy(xpath = "//a[@title='Services']")
+    public WebElement servicesModule;
+
+    @FindBy(xpath = "//a[@title='Company']")
+    public WebElement companyModule;
+
 }
