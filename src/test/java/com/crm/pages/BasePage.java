@@ -19,8 +19,9 @@ import java.util.List;
 
 public abstract class BasePage {
 
-    public BasePage(){
-        PageFactory.initElements(Driver.getDriver(),this);
+
+    public BasePage() {
+        PageFactory.initElements(Driver.getDriver(), this);
     }
 
     public void navigateToModuleAndClick(String moduleName) {
@@ -29,17 +30,12 @@ public abstract class BasePage {
         module.click();
     }
 
-    @FindBy(xpath = "//a[@title='Time and Reports']")
-    public WebElement timeAndReportsModule;
-
-    @FindBy(xpath = "//a[@title='Employees']")
-    public WebElement employeesModule;
-
-    @FindBy(xpath = "//a[@title='Services']")
-    public WebElement servicesModule;
-
     @FindBy(css = ".user-img.user-default-avatar")
     public WebElement myProfileIcon;
+
+
+    @FindBy(xpath = "//span[.='My Profile']")
+    public WebElement myProfileOption;
 
     @FindBy(xpath = "//span[.='Edit Profile Settings']")
     public WebElement editProfileSettingsOption;
@@ -53,9 +49,19 @@ public abstract class BasePage {
     @FindBy(xpath = "//span[.='Log out']")
     public WebElement logoutOption;
 
-    @FindBy(xpath = "//span[.='My Profile']")
-    public WebElement myProfileOption;
 
+    @FindBy(xpath = "//a[@title='Services']")
+    public WebElement servicesModule;
+    
+     @FindBy(xpath = "//a[@title='Time and Reports']")
+    public WebElement timeAndReportsModule;
+
+    @FindBy(xpath = "//a[@title='Employees']")
+    public WebElement employeesModule;
+    
+    @FindBy(xpath = "//a[@title='Company']")
+    public WebElement companyModule;
+    
     @FindBy (id = "bx-im-bar-notify")
     public WebElement notifications;
 
@@ -75,7 +81,5 @@ public abstract class BasePage {
         Driver.getDriver().findElement(By.xpath(locator)).click();
     }
 
-    @FindBy(xpath = "//a[@title='Company']")
-    public WebElement companyModule;
 
 }
