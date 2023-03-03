@@ -19,17 +19,20 @@ import java.util.List;
 
 public abstract class BasePage {
 
-      @FindBy(xpath = "(//span[@class='menu-item-link-text'])[1]")
-       public WebElement activityStream;
+      @FindBy(xpath = "//a[@title='Activity Stream']")
+       public WebElement activityStream;//span[@class='menu-item-link-text'])[1]
 
-      @FindBy(xpath = "(//span[@class='menu-item-link-text'])[2]")
+      @FindBy(xpath = "//a[@title='Tasks']")//
       public WebElement tasks;
 
-      @FindBy(xpath = "(//span[@class='menu-item-link-text'])[3]")
+      @FindBy(css = "a[title='Chat and Calls']")//span[@class='menu-item-link-text'])[3]
       public WebElement chatAndCall;
 
-      @FindBy(xpath = "(//span[@class='menu-item-link-text'])[4]")
+      @FindBy(css = "a[title='Workgroups']")//
       public WebElement workGroups;
+
+      //@FindBy(css = "a[onclick='bxFullscreenClose(); return false;']")
+    //  public WebElement closeButton;
 
 
     public BasePage() {
