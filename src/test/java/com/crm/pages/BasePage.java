@@ -19,6 +19,20 @@ import java.util.List;
 
 public abstract class BasePage {
 
+      @FindBy(xpath = "//a[@title='Activity Stream']")
+       public WebElement activityStream;//span[@class='menu-item-link-text'])[1]
+
+      @FindBy(xpath = "//a[@title='Tasks']")//
+      public WebElement tasks;
+
+      @FindBy(css = "a[title='Chat and Calls']")//span[@class='menu-item-link-text'])[3]
+      public WebElement chatAndCall;
+
+      @FindBy(css = "a[title='Workgroups']")//
+      public WebElement workGroups;
+
+      //@FindBy(css = "a[onclick='bxFullscreenClose(); return false;']")
+    //  public WebElement closeButton;
 
     public BasePage() {
         PageFactory.initElements(Driver.getDriver(), this);
@@ -45,6 +59,18 @@ public abstract class BasePage {
 
     @FindBy(xpath = "(//span[.='Configure notifications'])[2]")
     public WebElement configureNotificationsOption;
+
+    /**
+     * @return page name, for example: Dashboard
+     */
+
+
+
+    /**
+     * Waits until loader screen present. If loader screen will not pop up at all,
+     * NoSuchElementException will be handled  bu try/catch block
+     * Thus, we can continue in any case.
+     */
 
     @FindBy(xpath = "//span[.='Log out']")
     public WebElement logoutOption;
