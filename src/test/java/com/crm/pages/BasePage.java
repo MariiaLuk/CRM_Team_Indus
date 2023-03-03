@@ -1,8 +1,5 @@
 package com.crm.pages;
 
-
-
-
 import com.crm.utilities.BrowserUtils;
 import com.crm.utilities.Driver;
 import org.openqa.selenium.By;
@@ -19,48 +16,25 @@ import java.util.List;
 
 public abstract class BasePage {
 
-
-
-    @FindBy(css = "div[class='loader-mask shown']")
-    @CacheLookup
-    protected WebElement loaderMask;
-
-    @FindBy(css = "h1[class='oro-subtitle']")
-    public WebElement pageSubTitle;
-
-    @FindBy(css = "#user-menu > a")
-    public WebElement userName;
-
-    @FindBy(linkText = "Logout")
-    public WebElement logOutLink;
-
-    @FindBy(linkText = "My User")
-    public WebElement myUser;
-
-    public BasePage() {
-        PageFactory.initElements(Driver.getDriver(), this);
+    public BasePage(){
+        PageFactory.initElements(Driver.getDriver(),this);
     }
 
+    public void navigateToModuleAndClick(String moduleName) {
+        String locator = "//ul[@id='left-menu-list']//span[contains(.,'"+moduleName+"')]";
+        WebElement module = Driver.getDriver().findElement(By.xpath(locator));
+        module.click();
+    }
 
-    @FindBy(css = ".user-img.user-default-avatar")
-    public WebElement myProfileIcon;
+    @FindBy(xpath = "//a[@title='Time and Reports']")
+    public WebElement timeAndReportsModule;
 
+    @FindBy(xpath = "//a[@title='Employees']")
+    public WebElement employeesModule;
 
-    @FindBy(xpath = "//span[.='My Profile']")
-    public WebElement myProfileOption;
-
-    @FindBy(xpath = "//span[.='Edit Profile Settings']")
-    public WebElement editProfileSettingsOption;
-
-    @FindBy(xpath = "//span[@class='menu-popup-item menu-popup-no-icon ']//span[.='Themes']")
-    public WebElement themesOption;
-
-    @FindBy(xpath = "(//span[.='Configure notifications'])[2]")
-    public WebElement configureNotificationsOption;
-
-    @FindBy(xpath = "//span[.='Log out']")
-    public WebElement logoutOption;
-
+    @FindBy(xpath = "//a[@title='Services']")
+    public WebElement servicesModule;
+    
     @FindBy (id = "bx-im-bar-notify")
     public WebElement notifications;
 
@@ -80,5 +54,7 @@ public abstract class BasePage {
         Driver.getDriver().findElement(By.xpath(locator)).click();
     }
 
+    @FindBy(xpath = "//a[@title='Company']")
+    public WebElement companyModule;
 
 }
