@@ -5,6 +5,7 @@ package com.crm.pages;
 
 import com.crm.utilities.BrowserUtils;
 import com.crm.utilities.Driver;
+import io.cucumber.java.zh_cn.假如;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
@@ -37,6 +38,18 @@ public abstract class BasePage {
 
     @FindBy(linkText = "My User")
     public WebElement myUser;
+
+    @FindBy(xpath = "//div[@id='left-menu-more-btn']")
+    public WebElement moreButton;
+
+    @FindBy(css = "a[title='Applications']")
+    public WebElement applicationsButton;
+
+   @FindBy(xpath = "//a[@title='Workflows']")
+   public WebElement workflowsButton;
+
+   @FindBy(xpath = "//span[.='Hide']")
+   public WebElement hideButton;
 
     public BasePage() {
         PageFactory.initElements(Driver.getDriver(), this);
