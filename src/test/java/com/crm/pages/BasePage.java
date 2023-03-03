@@ -20,27 +20,15 @@ import java.util.List;
 public abstract class BasePage {
 
 
-
-    @FindBy(css = "div[class='loader-mask shown']")
-    @CacheLookup
-    protected WebElement loaderMask;
-
-    @FindBy(css = "h1[class='oro-subtitle']")
-    public WebElement pageSubTitle;
-
-    @FindBy(css = "#user-menu > a")
-    public WebElement userName;
-
-    @FindBy(linkText = "Logout")
-    public WebElement logOutLink;
-
-    @FindBy(linkText = "My User")
-    public WebElement myUser;
-
     public BasePage() {
         PageFactory.initElements(Driver.getDriver(), this);
     }
 
+    public void navigateToModuleAndClick(String moduleName) {
+        String locator = "//ul[@id='left-menu-list']//span[contains(.,'"+moduleName+"')]";
+        WebElement module = Driver.getDriver().findElement(By.xpath(locator));
+        module.click();
+    }
 
     @FindBy(css = ".user-img.user-default-avatar")
     public WebElement myProfileIcon;
@@ -61,6 +49,19 @@ public abstract class BasePage {
     @FindBy(xpath = "//span[.='Log out']")
     public WebElement logoutOption;
 
+
+    @FindBy(xpath = "//a[@title='Services']")
+    public WebElement servicesModule;
+    
+     @FindBy(xpath = "//a[@title='Time and Reports']")
+    public WebElement timeAndReportsModule;
+
+    @FindBy(xpath = "//a[@title='Employees']")
+    public WebElement employeesModule;
+    
+    @FindBy(xpath = "//a[@title='Company']")
+    public WebElement companyModule;
+    
     @FindBy (id = "bx-im-bar-notify")
     public WebElement notifications;
 
