@@ -34,6 +34,25 @@ public abstract class BasePage {
 
     @FindBy(xpath = "//a[@title='Services']")
     public WebElement servicesModule;
+    
+    @FindBy (id = "bx-im-bar-notify")
+    public WebElement notifications;
+
+    @FindBy (xpath = "//div[@class='help-block-icon']")
+    public WebElement helpButton;
+
+    @FindBy (id = "bx-im-bar-search")
+    public WebElement rightSearchButton;
+
+    /**
+     * Method that will allow to access options under my profile
+     * @param option
+     */
+    public void selectOptionUnderProfile(String option){
+        myProfileIcon.click();
+        String locator = "//div[@class='menu-popup-items']//span[contains(.,'"+option+"')]";
+        Driver.getDriver().findElement(By.xpath(locator)).click();
+    }
 
     @FindBy(xpath = "//a[@title='Company']")
     public WebElement companyModule;
