@@ -34,11 +34,31 @@ public abstract class BasePage {
       //@FindBy(css = "a[onclick='bxFullscreenClose(); return false;']")
     //  public WebElement closeButton;
 
-
     public BasePage() {
         PageFactory.initElements(Driver.getDriver(), this);
     }
 
+    public void navigateToModuleAndClick(String moduleName) {
+        String locator = "//ul[@id='left-menu-list']//span[contains(.,'"+moduleName+"')]";
+        WebElement module = Driver.getDriver().findElement(By.xpath(locator));
+        module.click();
+    }
+
+    @FindBy(css = ".user-img.user-default-avatar")
+    public WebElement myProfileIcon;
+
+
+    @FindBy(xpath = "//span[.='My Profile']")
+    public WebElement myProfileOption;
+
+    @FindBy(xpath = "//span[.='Edit Profile Settings']")
+    public WebElement editProfileSettingsOption;
+
+    @FindBy(xpath = "//span[@class='menu-popup-item menu-popup-no-icon ']//span[.='Themes']")
+    public WebElement themesOption;
+
+    @FindBy(xpath = "(//span[.='Configure notifications'])[2]")
+    public WebElement configureNotificationsOption;
 
     /**
      * @return page name, for example: Dashboard
@@ -52,36 +72,40 @@ public abstract class BasePage {
      * Thus, we can continue in any case.
      */
 
+    @FindBy(xpath = "//span[.='Log out']")
+    public WebElement logoutOption;
 
 
+    @FindBy(xpath = "//a[@title='Services']")
+    public WebElement servicesModule;
+    
+     @FindBy(xpath = "//a[@title='Time and Reports']")
+    public WebElement timeAndReportsModule;
+
+    @FindBy(xpath = "//a[@title='Employees']")
+    public WebElement employeesModule;
+    
+    @FindBy(xpath = "//a[@title='Company']")
+    public WebElement companyModule;
+    
+    @FindBy (id = "bx-im-bar-notify")
+    public WebElement notifications;
+
+    @FindBy (xpath = "//div[@class='help-block-icon']")
+    public WebElement helpButton;
+
+    @FindBy (id = "bx-im-bar-search")
+    public WebElement rightSearchButton;
 
     /**
-     * This method will navigate user to the specific module in vytrack application.
-     * For example: if tab is equals to Activities, and module equals to Calls,
-     * Then method will navigate user to this page: http://qa2.vytrack.com/call/
-     *
-     * @param tab
-     * @param module
+     * Method that will allow to access options under my profile
+     * @param option
      */
-    public void navigateToModule(String tab, String module) {
-        String tabLocator = "//span[normalize-space()='" + tab + "' and contains(@class, 'title title-level-1')]";
-        String moduleLocator = "//span[normalize-space()='" + module + "' and contains(@class, 'title title-level-2')]";
-        try {
-            BrowserUtils.waitForClickablility(By.xpath(tabLocator), 5);
-            WebElement tabElement = Driver.getDriver().findElement(By.xpath(tabLocator));
-            new Actions(Driver.getDriver()).moveToElement(tabElement).pause(200).doubleClick(tabElement).build().perform();
-        } catch (Exception e) {
-            BrowserUtils.clickWithWait(By.xpath(tabLocator), 5);
-        }
-        try {
-            BrowserUtils.waitForPresenceOfElement(By.xpath(moduleLocator), 5);
-            BrowserUtils.waitForVisibility(By.xpath(moduleLocator), 5);
-            BrowserUtils.scrollToElement(Driver.getDriver().findElement(By.xpath(moduleLocator)));
-            Driver.getDriver().findElement(By.xpath(moduleLocator)).click();
-        } catch (Exception e) {
-//            BrowserUtils.waitForStaleElement(Driver.get().findElement(By.xpath(moduleLocator)));
-            BrowserUtils.clickWithTimeOut(Driver.getDriver().findElement(By.xpath(moduleLocator)),  5);
-        }
+    public void selectOptionUnderProfile(String option){
+        myProfileIcon.click();
+        String locator = "//div[@class='menu-popup-items']//span[contains(.,'"+option+"')]";
+        Driver.getDriver().findElement(By.xpath(locator)).click();
     }
+
 
 }
