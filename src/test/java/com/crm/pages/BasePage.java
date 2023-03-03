@@ -34,6 +34,18 @@ public abstract class BasePage {
       //@FindBy(css = "a[onclick='bxFullscreenClose(); return false;']")
     //  public WebElement closeButton;
 
+    @FindBy(xpath = "//div[@id='left-menu-more-btn']")
+    public WebElement moreButton;
+
+    @FindBy(css = "a[title='Applications']")
+    public WebElement applicationsButton;
+
+   @FindBy(xpath = "//a[@title='Workflows']")
+   public WebElement workflowsButton;
+
+   @FindBy(xpath = "//span[.='Hide']")
+   public WebElement hideButton;
+
     public BasePage() {
         PageFactory.initElements(Driver.getDriver(), this);
     }
