@@ -1,5 +1,8 @@
 package com.crm.pages;
 
+
+
+
 import com.crm.utilities.BrowserUtils;
 import com.crm.utilities.Driver;
 import org.openqa.selenium.By;
@@ -34,7 +37,25 @@ public abstract class BasePage {
 
     @FindBy(xpath = "//a[@title='Services']")
     public WebElement servicesModule;
-    
+
+    @FindBy(css = ".user-img.user-default-avatar")
+    public WebElement myProfileIcon;
+
+    @FindBy(xpath = "//span[.='Edit Profile Settings']")
+    public WebElement editProfileSettingsOption;
+
+    @FindBy(xpath = "//span[@class='menu-popup-item menu-popup-no-icon ']//span[.='Themes']")
+    public WebElement themesOption;
+
+    @FindBy(xpath = "(//span[.='Configure notifications'])[2]")
+    public WebElement configureNotificationsOption;
+
+    @FindBy(xpath = "//span[.='Log out']")
+    public WebElement logoutOption;
+
+    @FindBy(xpath = "//span[.='My Profile']")
+    public WebElement myProfileOption;
+
     @FindBy (id = "bx-im-bar-notify")
     public WebElement notifications;
 
