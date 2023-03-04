@@ -1,8 +1,6 @@
 package com.crm.pages;
 
 
-
-
 import com.crm.utilities.BrowserUtils;
 import com.crm.utilities.Driver;
 import org.openqa.selenium.By;
@@ -19,19 +17,19 @@ import java.util.List;
 
 public abstract class BasePage {
 
-      @FindBy(xpath = "//a[@title='Activity Stream']")
-       public WebElement activityStream;//span[@class='menu-item-link-text'])[1]
+    @FindBy(xpath = "//a[@title='Activity Stream']")
+    public WebElement activityStream;//span[@class='menu-item-link-text'])[1]
 
-      @FindBy(xpath = "//a[@title='Tasks']")//
-      public WebElement tasks;
+    @FindBy(xpath = "//a[@title='Tasks']")//
+    public WebElement tasks;
 
-      @FindBy(css = "a[title='Chat and Calls']")//span[@class='menu-item-link-text'])[3]
-      public WebElement chatAndCall;
+    @FindBy(css = "a[title='Chat and Calls']")//span[@class='menu-item-link-text'])[3]
+    public WebElement chatAndCall;
 
-      @FindBy(css = "a[title='Workgroups']")//
-      public WebElement workGroups;
+    @FindBy(css = "a[title='Workgroups']")//
+    public WebElement workGroups;
 
-      //@FindBy(css = "a[onclick='bxFullscreenClose(); return false;']")
+    //@FindBy(css = "a[onclick='bxFullscreenClose(); return false;']")
     //  public WebElement closeButton;
 
     @FindBy(xpath = "//div[@id='left-menu-more-btn']")
@@ -40,18 +38,18 @@ public abstract class BasePage {
     @FindBy(css = "a[title='Applications']")
     public WebElement applicationsButton;
 
-   @FindBy(xpath = "//a[@title='Workflows']")
-   public WebElement workflowsButton;
+    @FindBy(xpath = "//a[@title='Workflows']")
+    public WebElement workflowsButton;
 
-   @FindBy(xpath = "//span[.='Hide']")
-   public WebElement hideButton;
+    @FindBy(xpath = "//span[.='Hide']")
+    public WebElement hideButton;
 
     public BasePage() {
         PageFactory.initElements(Driver.getDriver(), this);
     }
 
     public void navigateToModuleAndClick(String moduleName) {
-        String locator = "//ul[@id='left-menu-list']//span[contains(.,'"+moduleName+"')]";
+        String locator = "//ul[@id='left-menu-list']//span[contains(.,'" + moduleName + "')]";
         WebElement module = Driver.getDriver().findElement(By.xpath(locator));
         module.click();
     }
@@ -77,7 +75,6 @@ public abstract class BasePage {
      */
 
 
-
     /**
      * Waits until loader screen present. If loader screen will not pop up at all,
      * NoSuchElementException will be handled  bu try/catch block
@@ -90,32 +87,45 @@ public abstract class BasePage {
 
     @FindBy(xpath = "//a[@title='Services']")
     public WebElement servicesModule;
-    
-     @FindBy(xpath = "//a[@title='Time and Reports']")
+
+    @FindBy(xpath = "//a[@title='Time and Reports']")
     public WebElement timeAndReportsModule;
 
     @FindBy(xpath = "//a[@title='Employees']")
     public WebElement employeesModule;
-    
+
     @FindBy(xpath = "//a[@title='Company']")
     public WebElement companyModule;
-    
-    @FindBy (id = "bx-im-bar-notify")
+
+    @FindBy(id = "bx-im-bar-notify")
     public WebElement notifications;
 
-    @FindBy (xpath = "//div[@class='help-block-icon']")
+    @FindBy(xpath = "//div[@class='help-block-icon']")
     public WebElement helpButton;
 
-    @FindBy (id = "bx-im-bar-search")
+    @FindBy(id = "bx-im-bar-search")
     public WebElement rightSearchButton;
+
+    @FindBy(xpath = "//a[@title='Drive']")
+    public WebElement driveButton;
+
+    @FindBy(xpath = "//a[@title='Calendar']")
+    public WebElement calendarButton;
+
+    @FindBy(xpath = "//a[@title='Mail']")
+    public WebElement mailButton;
+
+    @FindBy(xpath = "//a[@title='Contact Center']")
+    public WebElement contactCenterButton;
 
     /**
      * Method that will allow to access options under my profile
+     *
      * @param option
      */
-    public void selectOptionUnderProfile(String option){
+    public void selectOptionUnderProfile(String option) {
         myProfileIcon.click();
-        String locator = "//div[@class='menu-popup-items']//span[contains(.,'"+option+"')]";
+        String locator = "//div[@class='menu-popup-items']//span[contains(.,'" + option + "')]";
         Driver.getDriver().findElement(By.xpath(locator)).click();
     }
 
