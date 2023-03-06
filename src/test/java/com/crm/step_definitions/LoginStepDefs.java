@@ -4,6 +4,13 @@ import com.crm.pages.LoginPage;
 import com.crm.utilities.ConfigurationReader;
 import com.crm.utilities.Driver;
 import io.cucumber.java.en.Given;
+import io.cucumber.java.en.Then;
+import io.cucumber.java.en.When;
+import org.junit.Assert;
+
+import java.util.ArrayList;
+import java.util.List;
+
 public class LoginStepDefs {
 
 
@@ -36,6 +43,38 @@ public class LoginStepDefs {
     public void the_user_logged_in_with_username_as_and_password_as(String username, String password) {
       LoginPage loginPage=new LoginPage();
       loginPage.login(username,password);
+    }
+
+    LoginPage loginPage=new LoginPage();
+    @Given("HR users are on the homepage")
+    public void usersAreOnTheHomepage() {
+        Driver.getDriver().get(ConfigurationReader.getProperty("url"));
+        loginPage.userName.sendKeys("hr1@cybertekschool.com");
+        loginPage.password.sendKeys("UserUser");
+        loginPage.submit.click();
+    }
+
+    @When("users click the profile name")
+    public void usersClickTheProfileName() {
+        loginPage.myProfileIcon.click();
+
+    }
+
+
+    @Then("Verify the users see flowing options:")
+    public void verifyTheUsersSeeFlowingOptions(List<String> expectedList) {
+
+        List<String> actualList=new ArrayList<>();
+
+        actualList.add(loginPage.myProfileOption.getText());
+        actualList.add(loginPage.editProfileSettingsOption.getText());
+        actualList.add(loginPage.themesOption.getText());
+        actualList.add(loginPage.configureNotificationsOption.getText());
+        actualList.add(loginPage.logoutOption.getText());
+        //System.out.println(expectedList);
+        //System.out.println("actualList = " + actualList);
+        Assert.assertEquals(actualList,expectedList);
+
     }
 
 
