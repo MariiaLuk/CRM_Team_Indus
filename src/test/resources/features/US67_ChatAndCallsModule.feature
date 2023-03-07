@@ -4,7 +4,7 @@ Feature: Chat and Calls module functionality
   @lana
   Scenario Outline: Verify the users view all options in the Chat and Calls module
     Given the user is on the login page
-    Given the user logged in with username as "<username>" and password as "<password>"
+    When the user logged in with username as "<username>" and password as "<password>"
     When users click the Chat and Calls module on the homepage
     Then verify the users see 4 options:
       | Message         |
