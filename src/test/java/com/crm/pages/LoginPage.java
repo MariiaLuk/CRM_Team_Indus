@@ -23,6 +23,12 @@ public class LoginPage extends BasePage {
     @FindBy(css = "input[type=\"submit\"]")
     public WebElement submit;
 
+    @FindBy(xpath = "//label[.='Remember me on this computer']")
+    public WebElement remember_me_check_box_text;
+
+    @FindBy(id = "USER_REMEMBER")
+    public WebElement remember_me_check_box;
+
 
     public void login(String userNameStr, String passwordStr) {
         userName.sendKeys(userNameStr);
