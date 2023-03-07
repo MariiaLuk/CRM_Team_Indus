@@ -27,5 +27,6 @@ public class US67_StepDefinition {
         for (String eachOption : expectedOptions) {
             Assert.assertTrue(chatAndCallsModule.chatAndCallsOptions(eachOption).isDisplayed());
         }
+
     }
 }
