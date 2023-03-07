@@ -19,14 +19,6 @@ public class US67_StepDefinition {
         chatAndCallsModule.navigateToModuleAndClick("Chat and Calls");
     }
 
-   /* @Then("verify the users see four options:")
-    public void verify_the_users_see_four_options(List<String> options) {
-
-        for (String eachOption : options) {
-            Assert.assertTrue(chatAndCallsModule.chatAndCallsOptions(eachOption).isDisplayed());
-        }
-    }*/
-
     @Then("verify the users see {int} options:")
     public void verifyTheUsersSeeOptions(int optionsCount, List<String> expectedOptions) {
         List<WebElement> actualOptions = Driver.getDriver().findElements(By.xpath("//div[@class='bx-desktop-appearance-tab']//div[contains(@id,'bx-desktop-tab')]"));
