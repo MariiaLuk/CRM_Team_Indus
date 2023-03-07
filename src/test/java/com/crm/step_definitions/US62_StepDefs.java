@@ -7,7 +7,7 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import org.junit.Assert;
 
-public class LoginPageFeatures {
+public class US62_StepDefs {
     LoginPage login = new LoginPage();
 
     @Given("the users go to the login page")
