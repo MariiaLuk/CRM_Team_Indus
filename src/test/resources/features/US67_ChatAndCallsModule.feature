@@ -1,7 +1,7 @@
 Feature: Chat and Calls module functionality
   Agile Story: User should be able to access and view all options in the Chat and Calls module
 
-  @lana
+  @B28G22-99 @lana
   Scenario Outline: Verify the users view all options in the Chat and Calls module
     Given the user is on the login page
     When the user logged in with username as "<username>" and password as "<password>"
