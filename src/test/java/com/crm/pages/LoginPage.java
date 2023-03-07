@@ -20,7 +20,7 @@ public class LoginPage {
     @FindBy(name = "USER_PASSWORD")
     public WebElement password;
 
-    @FindBy(css = "input[type=\"submit\"]")
+    @FindBy(css = "input[type='submit']")
     public WebElement submit;
 
     @FindBy(xpath = "//label[.='Remember me on this computer']")
