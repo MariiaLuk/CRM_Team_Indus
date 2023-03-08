@@ -1,11 +1,17 @@
 package com.crm.step_definitions;
 
 import com.crm.pages.LoginPage;
+import com.crm.utilities.BrowserUtils;
 import com.crm.utilities.ConfigurationReader;
 import com.crm.utilities.Driver;
+import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
-public class LoginStepDefs {
+import io.cucumber.java.en.Then;
+import io.cucumber.java.en.When;
+import org.junit.Assert;
 
+public class LoginStepDefs {
+    LoginPage loginPage=new LoginPage();
 
     @Given("the user is on the login page")
     public void the_user_is_on_the_login_page() {
@@ -41,5 +47,25 @@ public class LoginStepDefs {
 
 
 
+    @And("Click the Login In button")
+    public void clickTheLoginInButton() {
+        LoginPage loginPage =new LoginPage();
+        loginPage.submit.click();
+    }
 
+    @Then("verify user see {string}")
+    public void verifyUserSee(String expectedErrorMessage) {
+        BrowserUtils.waitForVisibility(loginPage.errorMessage,10);
+        String actualErrorMessage = loginPage.errorMessage.getText();
+        Assert.assertTrue(actualErrorMessage.equals(expectedErrorMessage));
+    }
+
+    @When("User Enter an invalid {string} or {string}")
+    public void userEnterAnInvalidOr(String username, String password) {
+        loginPage.login(username,password);
+        if( ! username.equalsIgnoreCase(ConfigurationReader.getProperty("username")) && password.equalsIgnoreCase(ConfigurationReader.getProperty("password"))){
+
+         System.out.println(loginPage.errorMessage.getText());
+     }
+    }
 }
