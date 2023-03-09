@@ -19,7 +19,7 @@ public class US69_DriveModule_StepDefinitions {
 
     }
 
-    @Then("verify the users see {int} options:")
+    @Then("anna verify the users see {int} options:")
     public void verify_the_users_see_options(int optionCount, List<String> expectedOptions) {
         List <WebElement> actualOptions = Driver.getDriver().findElements(By.xpath("//span[@class='main-buttons-item-text-title']"));
         Assert.assertEquals(optionCount,actualOptions.size());

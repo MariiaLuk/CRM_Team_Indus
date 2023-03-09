@@ -6,7 +6,7 @@ Feature: Drive Page module functionality
     Given the user is on the login page
     When the user logged in with username as "<username>" and password as "<password>"
     When users click the Drive page module on the homepage
-    Then verify the users see 6 options:
+    Then anna verify the users see 6 options:
       | My Drive                   |
       | All Documents              |
       | Company Drive              |
