@@ -1,6 +1,7 @@
 package com.crm.pages;
 
 
+import com.crm.utilities.BrowserUtils;
 import com.crm.utilities.Driver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -36,6 +37,7 @@ public class LoginPage {
     public void login(String userNameStr, String passwordStr) {
         userName.sendKeys(userNameStr);
         password.sendKeys(passwordStr);
+        BrowserUtils.sleep(2);
         submit.click();
         // verification that we logged
     }
