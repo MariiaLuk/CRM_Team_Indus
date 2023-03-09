@@ -8,7 +8,7 @@ import org.openqa.selenium.support.PageFactory;
 
 public class LoginPage {
 
-    public LoginPage(){
+    public LoginPage() {
         PageFactory.initElements(Driver.getDriver(), this);
     }
 
@@ -16,12 +16,15 @@ public class LoginPage {
     public WebElement userName;
 
 
-
     @FindBy(name = "USER_PASSWORD")
     public WebElement password;
 
     @FindBy(css = "input[type='submit']")
     public WebElement submit;
+
+
+    @FindBy(xpath = "//div[.='Incorrect login or password']")
+    public WebElement errorMessage;
 
     @FindBy(xpath = "//label[.='Remember me on this computer']")
     public WebElement remember_me_check_box_text;
