@@ -57,15 +57,13 @@ public class LoginStepDefs {
     public void verifyUserSee(String expectedErrorMessage) {
         BrowserUtils.waitForVisibility(loginPage.errorMessage,10);
         String actualErrorMessage = loginPage.errorMessage.getText();
-        Assert.assertTrue(actualErrorMessage.equals(expectedErrorMessage));
+        Assert.assertEquals(expectedErrorMessage,actualErrorMessage);
     }
 
     @When("User Enter an invalid {string} or {string}")
     public void userEnterAnInvalidOr(String username, String password) {
         loginPage.login(username,password);
-        if( ! username.equalsIgnoreCase(ConfigurationReader.getProperty("username")) && password.equalsIgnoreCase(ConfigurationReader.getProperty("password"))){
 
-         System.out.println(loginPage.errorMessage.getText());
      }
     }
-}
+
