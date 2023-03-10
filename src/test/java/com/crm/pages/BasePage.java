@@ -67,8 +67,8 @@ public abstract class BasePage {
     @FindBy(xpath = "//span[@class='menu-popup-item menu-popup-no-icon ']//span[.='Themes']")
     public WebElement themesOption;
 
-    @FindBy(xpath = "(//span[.='Configure notifications'])[2]")
-    public WebElement configureNotificationsOption;
+    @FindBy(id = "left-menu-settings")
+    public WebElement configureOption;
 
     /**
      * @return page name, for example: Dashboard
