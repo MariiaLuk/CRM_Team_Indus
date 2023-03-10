@@ -129,5 +129,7 @@ public abstract class BasePage {
         Driver.getDriver().findElement(By.xpath(locator)).click();
     }
 
+    @FindBy(id = "user-name")
+    public WebElement usersProfileDropdown;
 
 }
