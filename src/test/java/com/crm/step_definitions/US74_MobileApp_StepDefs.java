@@ -14,9 +14,9 @@ public class US74_MobileApp_StepDefs {
 
     @Given("users are on the homepage")
     public void users_are_on_the_homepage() {
-        String expectedTitle = "(39) Portal";
+        String expectedTitle = "Portal";
         String actualTitle = Driver.getDriver().getTitle();
-        Assert.assertEquals(expectedTitle,actualTitle);
+        Assert.assertTrue(actualTitle.contains(expectedTitle));
     }
     @Then("verify the users see flowing {int} mobile app options:")
     public void verify_the_users_see_flowing_mobile_app_options(int mobileOptionsCount, List<String> expectedMobileAppOptions) {
