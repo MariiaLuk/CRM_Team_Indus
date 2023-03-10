@@ -70,6 +70,8 @@ public abstract class BasePage {
     @FindBy(id = "left-menu-settings")
     public WebElement configureOption;
 
+    @FindBy(xpath = "(//span[.='Configure notifications'])[2]")
+    public WebElement configureNotificationsOption;
     /**
      * @return page name, for example: Dashboard
      */
