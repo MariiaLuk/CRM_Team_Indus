@@ -1,14 +1,21 @@
 package com.crm.step_definitions;
 
 import com.crm.pages.LoginPage;
+import com.crm.utilities.BrowserUtils;
 import com.crm.utilities.ConfigurationReader;
+import com.crm.utilities.Driver;
+import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
-public class LoginStepDefs {
+import io.cucumber.java.en.Then;
+import io.cucumber.java.en.When;
+import org.junit.Assert;
 
+public class LoginStepDefs {
+    LoginPage loginPage=new LoginPage();
 
     @Given("the user is on the login page")
     public void the_user_is_on_the_login_page() {
-        System.out.println("Login to app in Before method");
+        Driver.getDriver().get(ConfigurationReader.getProperty("url"));
     }
 
     @Given("the user logged in as {string}")
@@ -17,15 +24,15 @@ public class LoginStepDefs {
         String username =null;
         String password =null;
 
-        if(userType.equalsIgnoreCase("driver")){
-            username = ConfigurationReader.getProperty("driver_username");
-            password = ConfigurationReader.getProperty("driver_password");
-        }else if(userType.equalsIgnoreCase("sales manager")){
-            username = ConfigurationReader.getProperty("sales_manager_username");
-            password = ConfigurationReader.getProperty("sales_manager_password");
-        }else if(userType.equalsIgnoreCase("store manager")){
-            username = ConfigurationReader.getProperty("store_manager_username");
-            password = ConfigurationReader.getProperty("store_manager_password");
+        if(userType.equalsIgnoreCase("Hr users")){
+            username = ConfigurationReader.getProperty("hr_username");
+            password = ConfigurationReader.getProperty("hr_password");
+        }else if(userType.equalsIgnoreCase("HelpDesk users")){
+            username = ConfigurationReader.getProperty("help_desk_username");
+            password = ConfigurationReader.getProperty("help_desk_password");
+        }else if(userType.equalsIgnoreCase("Marketing users")){
+            username = ConfigurationReader.getProperty("marketing_username");
+            password = ConfigurationReader.getProperty("marketing_password");
         }
         //send username and password and login
         new LoginPage().login(username,password);
@@ -40,5 +47,23 @@ public class LoginStepDefs {
 
 
 
+    @And("Click the Login In button")
+    public void clickTheLoginInButton() {
+        LoginPage loginPage =new LoginPage();
+        loginPage.submit.click();
+    }
 
-}
+    @Then("verify user see {string}")
+    public void verifyUserSee(String expectedErrorMessage) {
+        BrowserUtils.waitForVisibility(loginPage.errorMessage,10);
+        String actualErrorMessage = loginPage.errorMessage.getText();
+        Assert.assertEquals(expectedErrorMessage,actualErrorMessage);
+    }
+
+    @When("User Enter an invalid {string} or {string}")
+    public void userEnterAnInvalidOr(String username, String password) {
+        loginPage.login(username,password);
+
+     }
+    }
+

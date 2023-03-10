@@ -1,8 +1,6 @@
 package com.crm.pages;
 
 
-
-
 import com.crm.utilities.BrowserUtils;
 import com.crm.utilities.Driver;
 import org.openqa.selenium.By;
@@ -19,39 +17,62 @@ import java.util.List;
 
 public abstract class BasePage {
 
-    @FindBy(css = "span.title-level-1")
-    public List<WebElement> menuOptions;
+    @FindBy(xpath = "//a[@title='Activity Stream']")
+    public WebElement activityStream;//span[@class='menu-item-link-text'])[1]
 
-    @FindBy(css = "div[class='loader-mask shown']")
-    @CacheLookup
-    protected WebElement loaderMask;
+    @FindBy(xpath = "//a[@title='Tasks']")//
+    public WebElement tasks;
 
-    @FindBy(css = "h1[class='oro-subtitle']")
-    public WebElement pageSubTitle;
+    @FindBy(css = "a[title='Chat and Calls']")//span[@class='menu-item-link-text'])[3]
+    public WebElement chatAndCall;
 
-    @FindBy(css = "#user-menu > a")
-    public WebElement userName;
+    @FindBy(css = "a[title='Workgroups']")//
+    public WebElement workGroups;
 
-    @FindBy(linkText = "Logout")
-    public WebElement logOutLink;
+    //@FindBy(css = "a[onclick='bxFullscreenClose(); return false;']")
+    //  public WebElement closeButton;
 
-    @FindBy(linkText = "My User")
-    public WebElement myUser;
+    @FindBy(xpath = "//div[@id='left-menu-more-btn']")
+    public WebElement moreButton;
+
+    @FindBy(css = "a[title='Applications']")
+    public WebElement applicationsButton;
+
+    @FindBy(xpath = "//a[@title='Workflows']")
+    public WebElement workflowsButton;
+
+    @FindBy(xpath = "//span[.='Hide']")
+    public WebElement hideButton;
 
     public BasePage() {
         PageFactory.initElements(Driver.getDriver(), this);
     }
 
+    public void navigateToModuleAndClick(String moduleName) {
+        String locator = "//ul[@id='left-menu-list']//span[contains(.,'" + moduleName + "')]";
+        WebElement module = Driver.getDriver().findElement(By.xpath(locator));
+        module.click();
+    }
+
+    @FindBy(css = ".user-img.user-default-avatar")
+    public WebElement myProfileIcon;
+
+
+    @FindBy(xpath = "//span[.='My Profile']")
+    public WebElement myProfileOption;
+
+    @FindBy(xpath = "//span[.='Edit Profile Settings']")
+    public WebElement editProfileSettingsOption;
+
+    @FindBy(xpath = "//span[@class='menu-popup-item menu-popup-no-icon ']//span[.='Themes']")
+    public WebElement themesOption;
+
+    @FindBy(id = "left-menu-settings")
+    public WebElement configureOption;
 
     /**
      * @return page name, for example: Dashboard
      */
-    public String getPageSubTitle() {
-        //ant time we are verifying page name, or page subtitle, loader mask appears
-        waitUntilLoaderScreenDisappear();
-//        BrowserUtils.waitForStaleElement(pageSubTitle);
-        return pageSubTitle.getText();
-    }
 
 
     /**
@@ -59,45 +80,56 @@ public abstract class BasePage {
      * NoSuchElementException will be handled  bu try/catch block
      * Thus, we can continue in any case.
      */
-    public void waitUntilLoaderScreenDisappear() {
-        try {
-            WebDriverWait wait = new WebDriverWait(Driver.getDriver(), Duration.ofSeconds(10));
-            wait.until(ExpectedConditions.invisibilityOf(loaderMask));
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
 
-    }
+    @FindBy(xpath = "//span[.='Log out']")
+    public WebElement logoutOption;
 
 
+    @FindBy(xpath = "//a[@title='Services']")
+    public WebElement servicesModule;
+
+    @FindBy(xpath = "//a[@title='Time and Reports']")
+    public WebElement timeAndReportsModule;
+
+    @FindBy(xpath = "//a[@title='Employees']")
+    public WebElement employeesModule;
+
+    @FindBy(xpath = "//a[@title='Company']")
+    public WebElement companyModule;
+
+    @FindBy(id = "bx-im-bar-notify")
+    public WebElement notifications;
+
+    @FindBy(xpath = "//div[@class='help-block-icon']")
+    public WebElement helpButton;
+
+    @FindBy(id = "bx-im-bar-search")
+    public WebElement rightSearchButton;
+
+    @FindBy(xpath = "//a[@title='Drive']")
+    public WebElement driveButton;
+
+    @FindBy(xpath = "//a[@title='Calendar']")
+    public WebElement calendarButton;
+
+    @FindBy(xpath = "//a[@title='Mail']")
+    public WebElement mailButton;
+
+    @FindBy(xpath = "//a[@title='Contact Center']")
+    public WebElement contactCenterButton;
 
     /**
-     * This method will navigate user to the specific module in vytrack application.
-     * For example: if tab is equals to Activities, and module equals to Calls,
-     * Then method will navigate user to this page: http://qa2.vytrack.com/call/
+     * Method that will allow to access options under my profile
      *
-     * @param tab
-     * @param module
+     * @param option
      */
-    public void navigateToModule(String tab, String module) {
-        String tabLocator = "//span[normalize-space()='" + tab + "' and contains(@class, 'title title-level-1')]";
-        String moduleLocator = "//span[normalize-space()='" + module + "' and contains(@class, 'title title-level-2')]";
-        try {
-            BrowserUtils.waitForClickablility(By.xpath(tabLocator), 5);
-            WebElement tabElement = Driver.getDriver().findElement(By.xpath(tabLocator));
-            new Actions(Driver.getDriver()).moveToElement(tabElement).pause(200).doubleClick(tabElement).build().perform();
-        } catch (Exception e) {
-            BrowserUtils.clickWithWait(By.xpath(tabLocator), 5);
-        }
-        try {
-            BrowserUtils.waitForPresenceOfElement(By.xpath(moduleLocator), 5);
-            BrowserUtils.waitForVisibility(By.xpath(moduleLocator), 5);
-            BrowserUtils.scrollToElement(Driver.getDriver().findElement(By.xpath(moduleLocator)));
-            Driver.getDriver().findElement(By.xpath(moduleLocator)).click();
-        } catch (Exception e) {
-//            BrowserUtils.waitForStaleElement(Driver.get().findElement(By.xpath(moduleLocator)));
-            BrowserUtils.clickWithTimeOut(Driver.getDriver().findElement(By.xpath(moduleLocator)),  5);
-        }
+    public void selectOptionUnderProfile(String option) {
+        myProfileIcon.click();
+        String locator = "//div[@class='menu-popup-items']//span[contains(.,'" + option + "')]";
+        Driver.getDriver().findElement(By.xpath(locator)).click();
     }
+
+    @FindBy(id = "user-name")
+    public WebElement usersProfileDropdown;
 
 }
