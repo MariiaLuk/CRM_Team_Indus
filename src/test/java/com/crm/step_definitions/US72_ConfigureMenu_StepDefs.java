@@ -25,13 +25,8 @@ public class US72_ConfigureMenu_StepDefs {
         Assert.assertEquals(num, listOfElements.size());
 
         for (int i = 0; i < listOfElements.size(); i++) {
-            for (int j = 0; j < list.size(); j++) {
-                if (list.get(j).equals(listOfElements.get(i).getText())) {
-                    Assert.assertEquals(list.get(j), listOfElements.get(i).getText());
-                    Assert.assertTrue(listOfElements.get(i).isDisplayed());
-                    break;
-                }
-            }
+            Assert.assertEquals(list.get(i), listOfElements.get(i).getText());
+            Assert.assertTrue(listOfElements.get(i).isDisplayed());
         }
     }
 }
